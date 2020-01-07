@@ -1,17 +1,8 @@
-import pytest
 import time
 import math
-from selenium import webdriver
+import pytest
+
 final = ""
-
-
-@pytest.fixture(scope="function")
-def browser():
-    print("\nstart browser for test..")
-    browser = webdriver.Chrome()
-    yield browser
-    browser.quit()
-    print("\n" + final)
 
 
 @pytest.mark.parametrize('parameter', ["236895", "236896", "236897", "236898", "236899", "236903", "236904", "236905"])
@@ -28,3 +19,4 @@ def test_guest_should_see_login_link(browser, parameter):
         assert 'Correct!' == feedback
     except AssertionError:
         final += feedback  # собираем ответ про Сов с каждой ошибкой
+    print("\n" + final)
